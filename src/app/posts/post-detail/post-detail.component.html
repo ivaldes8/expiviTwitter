@@ -1,0 +1,55 @@
+<div class="flex flex-col items-center gap-6 py-8 px-4">
+  <div class="flex justify-start items-start w-full max-w-2xl">
+    <button
+      class="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition"
+      (click)="goBack()"
+    >
+      Go Back
+    </button>
+  </div>
+
+  <div class="w-full max-w-2xl bg-white rounded-lg shadow-md p-6">
+    <app-user-avatar [userId]="post.user_id"></app-user-avatar>
+    <div class="flex flex-col items-center gap-4">
+      <ng-container *ngIf="post?.content.type === 'text'">
+        <p class="text-lg font-medium text-gray-800 text-center">
+          {{ post?.content.text }}
+        </p>
+      </ng-container>
+
+      <ng-container *ngIf="post?.content.type === 'picture'">
+        <img
+          [src]="post?.content.picture_url"
+          alt="Picture"
+          class="rounded-lg shadow-lg max-h-[400px] object-cover"
+        />
+      </ng-container>
+
+      <ng-container *ngIf="post?.content.type === 'video'">
+        <video
+          controls
+          [src]="post?.content.video_url"
+          class="rounded-lg shadow-lg max-h-[400px]"
+        ></video>
+      </ng-container>
+    </div>
+
+    <div class="flex justify-between items-center mb-4">
+      <span class="bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-sm">
+        Type: {{ post?.content.type | titlecase }}
+      </span>
+      <app-post-detail-likes [likes]="post?.like_count"></app-post-detail-likes>
+    </div>
+
+    <div class="mt-6">
+      <p class="text-sm text-gray-500">
+        Posted on:
+        <span class="font-medium">{{
+          post?.created_at | date : "medium"
+        }}</span>
+      </p>
+    </div>
+
+    <app-post-detail-comments></app-post-detail-comments>
+  </div>
+</div>

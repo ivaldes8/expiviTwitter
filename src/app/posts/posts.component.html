@@ -1,0 +1,4 @@
+<div class="mx-5 flex flex-col gap-2">
+  <app-posts-header (searchQueryChanged)="searchQuery = $event"/>
+  <app-list-posts [searchQuery]="searchQuery"/>
+</div>

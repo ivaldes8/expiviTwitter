@@ -1,0 +1,28 @@
+<app-box>
+  <form
+    class="flex flex-col gap-4 w-full"
+    [formGroup]="commentForm"
+    (ngSubmit)="onComment()"
+  >
+    <div class="flex justify-between items-center">
+      <app-input
+        placeholder="Write a comment..."
+        [control]="textControl"
+        type="text"
+      ></app-input>
+
+      <div class="flex gap-2">
+        <app-button
+          *ngIf="textControl.value?.trim()"
+          variant="danger"
+          (buttonClick)="onCancel()"
+        >
+          Cancel
+        </app-button>
+        <app-button variant="primary" (buttonClick)="onComment()">
+          Comment
+        </app-button>
+      </div>
+    </div>
+  </form>
+</app-box>

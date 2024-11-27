@@ -1,0 +1,9 @@
+<div class="flex flex-col gap-1">
+  <label *ngIf="label">{{ label }}</label>
+  <input [type]="type" class="form-control" [formControl]="control" [placeholder]="placeholder" />
+  <div *ngIf="control.invalid && control.touched" class="text-sm text-red-500">
+    <div *ngFor="let errorKey of Object.keys(control.errors || {})">
+      {{ errorMessages[errorKey] }}
+    </div>
+  </div>
+</div>

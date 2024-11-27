@@ -1,0 +1,16 @@
+<div
+  class="flex justify-start items-center gap-4 cursor-pointer"
+  (click)="goToUserPosts()"
+>
+  <div
+    class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center font-bold text-white"
+  >
+    {{ userId }}
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-gray-700">User {{ userId }}</p>
+    <p *ngIf="userDate" class="text-xs text-gray-500">
+      {{ userDate | date : "medium" }}
+    </p>
+  </div>
+</div>

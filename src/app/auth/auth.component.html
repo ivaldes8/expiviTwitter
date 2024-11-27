@@ -1,0 +1,58 @@
+<div class="flex justify-center">
+  <form
+    class="flex flex-col gap-4 w-1/3"
+    [formGroup]="authForm"
+    (ngSubmit)="onSubmit()"
+    *ngIf="!fetching"
+  >
+    <app-input
+      label="E-Mail"
+      [control]="emailControl"
+      type="email"
+      [errorMessages]="{
+        required: 'E-Mail is required.',
+        email: 'Please enter a valid email address.'
+      }"
+    ></app-input>
+
+    <app-input
+      *ngIf="!isLoginMode"
+      label="Name"
+      [control]="nameControl"
+      type="name"
+      [errorMessages]="{
+        required: 'Name is required.'
+      }"
+    ></app-input>
+
+    <app-input
+      *ngIf="!isLoginMode"
+      label="Avatar Url"
+      [control]="avatarUrlControl"
+      type="avatarUrl"
+      [errorMessages]="{
+        required: 'Avatar Url is required.'
+      }"
+    ></app-input>
+
+    <app-input
+      label="Password"
+      [control]="passwordControl"
+      type="password"
+      [errorMessages]="{
+        required: 'Password is required.',
+        minlength: 'Password must be at least 6 characters long.'
+      }"
+    ></app-input>
+
+    <div class="flex gap-2 items-center">
+      <app-button variant="primary" type="submit" [disabled]="authForm.invalid">
+        {{ isLoginMode ? "Login" : "Sign Up" }}
+      </app-button>
+      <p class="text-2xl">|</p>
+      <app-button variant="alternative" (buttonClick)="onSwitchMode()">
+        Switch to {{ isLoginMode ? "Sign Up" : "Login" }}
+      </app-button>
+    </div>
+  </form>
+</div>

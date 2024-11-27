@@ -1,0 +1,24 @@
+<div class="flex flex-col items-center gap-6 py-8 px-4">
+  <h2 class="text-xl font-semibold text-gray-800">Comments</h2>
+  <div class="w-full">
+    <app-post-detail-comments-add
+      (commentAdded)="onCommentAdded()"
+    ></app-post-detail-comments-add>
+  </div>
+
+  <div
+    *ngFor="let comment of comments"
+    class="flex flex-col gap-4 p-4 border-b border-gray-200 last:border-none w-full"
+  >
+    <app-user-avatar
+      [userId]="comment.user_id"
+      [userDate]="comment.created_at"
+    ></app-user-avatar>
+
+    <p class="text-sm text-gray-800">{{ comment.text }}</p>
+  </div>
+
+  <div *ngIf="comments.length === 0">
+    <p class="text-gray-600 font-medium">No comments available.</p>
+  </div>
+</div>
